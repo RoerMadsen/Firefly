@@ -1,0 +1,32 @@
+$primary-color: #4f593e;
+$pri-light-color: #d5e5ba;
+$secondary-color: #fca919;
+$sec-light-color: #f1bb13;
+$dark-color: #1f0806;
+
+$mobile-width: 500px;
+$tablet-width: 800px;
+$desktop-width: 1000px;
+
+$header-font: "YesevaOne-Regular";
+$regular-font: "Roboto-Reglar";
+$regular-bold-font: "Roboto-Bold";
+
+@mixin fontFace($family, $src) {
+  font-family: $family;
+  src: url($src);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  @include fontFace("YesevaOne-Regular", "../../public/YesevaOne-Regular.ttf");
+}
+
+@font-face {
+  @include fontFace("Roboto-regular", "../../public/Roboto-Regular.ttf");
+}
+
+@font-face {
+  @include fontFace("Rotobo-Bold", "../../public/Roboto-Bold.ttf");
+}

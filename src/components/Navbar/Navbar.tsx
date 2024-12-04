@@ -1,32 +1,51 @@
-import React, { useState } from "react";
-import "./Navbar.css"; // Vi tilføjer styling her
+import { useState } from "react";
+import "./Navbar.scss";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  // Tilstand til at håndtere synligheden af menuen
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    setIsMenuVisible((prevState) => !prevState);
   };
 
   return (
-    <nav className="navbar">
-      <div className="navbar-content">
-        <div className="navbar-logo">
-          <img src="/logo.svg" alt="Logo" />
-        </div>
-        <div className={`navbar-links ${isOpen ? "open" : ""}`}>
-          <a href="#bestil">Bestil</a>
-          <a href="#om-firefly">Om Firefly</a>
-          <a href="#kontakt">Kontakt</a>
-        </div>
-        <button
-          className="navbar-toggle"
-          onClick={toggleMenu}
-          aria-label="Toggle Menu">
-          <span className="list-icon"></span>
-        </button>
+    <header className="primary-header flex">
+      <div>
+        <img
+          src="../../../public/logo.png"
+          alt="Firefly logo"
+          className="logo"
+        />
       </div>
-    </nav>
+
+      <button
+        className="mobile-nav-toggle"
+        aria-controls="primary-navigation"
+        onClick={toggleMenu}
+        aria-expanded={isMenuVisible ? "true" : "false"}>
+        <span className="sr-only">Menu</span>
+      </button>
+
+      <nav>
+        <ul
+          id="primary-navigation"
+          data-visible={isMenuVisible ? "true" : "false"}
+          className={`primary-navigation underline-indicators flex ${
+            isMenuVisible ? "open" : ""
+          }`}>
+          <li className="nav-link">
+            <a href="index.html">Bestil</a>
+          </li>
+          <li className="nav-link">
+            <a href="destination.html">Om Firefly</a>
+          </li>
+          <li className="nav-link">
+            <a href="crew.html">Kontakt Os</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
   );
 };
 
